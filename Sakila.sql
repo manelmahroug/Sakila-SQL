@@ -193,7 +193,20 @@ WHERE film_id IN (
 		)
 	);
 
--- 7e
+-- 7e Display the most frequently rented movies in descending order
+
+SELECT * FROM film;
+SELECT * FROM inventory;
+SELECT * FROM rental;
+
+SELECT inventory.film_id, COUNT(rental.inventory_id) AS rental_count
+FROM inventory
+JOIN rental ON
+inventory.inventory_id = rental.inventory_id
+GROUP BY film_id
+ORDER BY rental_count DESC;
+
+-- 7f
 
 SELECT * FROM film;
 SELECT * FROM inventory;
@@ -215,6 +228,9 @@ FROM customer
 JOIN payment ON
 customer.customer_id = payment.customer_id
 GROUP BY store_id;
+
+
+
 
 -- 7g
 
